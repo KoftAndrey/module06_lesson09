@@ -1,0 +1,104 @@
+.header {
+  padding: 20px 0;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__logo {
+
+}
+
+.header__form {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.header__search {
+  display: flex;
+  align-items: center;
+}
+
+.header__search-input {
+  padding: 12px 62px 13px 20px;
+  background: transparent;
+  min-width: 500px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 17px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 22px;
+  border-color: #e6e6e6;
+}
+
+#search-clear {
+  display: none;
+}
+
+.header__search-input:hover,
+.header__search-input:focus,
+.header__search-input:active {
+  outline: none;
+  border-color: #8e8e8e;
+  background-color: #fff;
+}
+
+.header__search-input::placeholder {
+  color: var(--main-text, #212121);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 0.8;
+}
+
+.header__search-button {
+  width: 42px;
+  height: 42px;
+  margin: 0 0 0 -42px;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.header__select {
+  position: relative;
+}
+
+.header__select-region {
+  max-height: 44px;
+  min-width: 320px;
+  padding: 12px 20px 13px 20px;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 300;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 22px;
+  border-color: #e6e6e6;
+}
+
+.header__select-arrow {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  z-index: 2;
+  display: block;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+  background-image: url('img/ArrowDropDown.svg');
+  pointer-events: none;
+}
+
+.header__select-region:hover,
+.header__select-region:focus,
+.header__select-region:active {
+  outline: none;
+  border-color: #8e8e8e;
+}

@@ -1,0 +1,17 @@
+.articles {
+  margin: 0 0 40px 0;
+}
+
+.articles__header {
+  padding: 19px 0;
+  margin-bottom: 40px;
+  font-size: 26px;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.articles__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px 20px;
+}

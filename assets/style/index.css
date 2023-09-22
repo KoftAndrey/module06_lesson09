@@ -1,0 +1,11 @@
+@import url("normalize/normalize.css");
+
+@import url("global/global.css");
+
+@import url("header/header.css");
+
+@import url("articles/articles.css");
+
+@import url("card/card.css");
+
+@import url("footer/footer.css");
