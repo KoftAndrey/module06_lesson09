@@ -8,7 +8,7 @@ const createNewSection = (search, data) => {
   let header;
   if (search) {
     header = document.createElement('h2');
-    header.textContent = `По вашему запросу “${search}” найдено ${data} результатов`;
+    header.textContent = `По вашему запросу “${search}” найдено ${data.totalArticles} результатов`;
   } else {
     header = document.createElement('h1');
     header.textContent = 'Свежие новости';

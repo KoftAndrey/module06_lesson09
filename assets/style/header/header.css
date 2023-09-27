@@ -7,10 +7,6 @@
   justify-content: space-between;
 }
 
-.header__logo {
-
-}
-
 .header__form {
   display: flex;
   justify-content: space-between;
@@ -78,6 +74,7 @@
   border-style: solid;
   border-radius: 22px;
   border-color: #e6e6e6;
+  cursor: pointer;
 }
 
 .header__select-arrow {

@@ -17,13 +17,13 @@ const createDateStrings = publishedAt => {
 };
 
 // Создать блок карточки
-const createCardBlock = (
-    url,
-    title,
-    content,
-    publishedAt,
-    source,
-) => {
+const createCardBlock = ({
+  url,
+  title,
+  content,
+  publishedAt,
+  source,
+}) => {
   const cardElem = document.createElement('li');
   cardElem.classList.add('articles__card', 'card');
 
@@ -55,71 +55,33 @@ const createCardBlock = (
   return cardElem;
 };
 
-// Создать карточку
-const createCard = (url, title, description, publishedAt, source, img) => {
-  const block = createCardBlock(url, title, description, publishedAt, source);
-  block.imageWrapper.append(img);
-
-  return block;
-};
-
-// Создать карточку с ошибкой
-const createCardErr = (url, title, description, publishedAt, source) => {
-  const block = createCardBlock(url, title, description, publishedAt, source);
-  block.imageWrapper.insertAdjacentHTML('beforeend', `
-    <img class="card__image" src="assets/style/card/img/no_image.jpg" alt="${title}" >
-  `);
-
-  return block;
-};
 
 // Массив загруженный изображений ==============================================
 // Загрузить изображение
-const loadImage = ({
-  url,
-  image,
-  title,
-  description,
-  publishedAt,
-  source,
-}) => new Promise(resolve => {
+const loadImage = ({image, title}) => new Promise(resolve => {
   const img = new Image();
   img.classList.add('card__image');
   img.src = image;
   img.alt = title;
   img.addEventListener('load', () => {
-    const card = createCard(
-        url,
-        title,
-        description,
-        publishedAt,
-        source,
-        img,
-    );
-    resolve(card);
+    resolve(img);
   });
   img.addEventListener('error', () => {
-    const card = createCardErr(
-        url,
-        title,
-        description,
-        publishedAt,
-        source,
-    );
+    img.src = 'assets/style/card/img/no_image.jpg';
     console.warn('Ошибка при загрузке изображения:', image);
-    resolve(card);
+    resolve(img);
   });
 });
 
 // Создать массив promise изображений
-const createImagesArr = (data, number) => {
+const createImagesArr = data => {
   const promiseArr = [];
-  for (let i = 0; i < number; i++) {
+  for (let i = 0; i < data.length; i++) {
     promiseArr.push(loadImage(data[i]));
   }
 
   return promiseArr;
 };
 
-export default createImagesArr;
+export {createImagesArr, createCardBlock};
 

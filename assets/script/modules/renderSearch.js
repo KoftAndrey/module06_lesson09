@@ -1,37 +1,25 @@
-import renderNews from './renderNews.js';
+import {fetchRequest, renderNews} from './renderNews.js';
 import preload from './preload.js';
 import {getRegionStorage} from './regionControls.js';
-import createNewSection from './createSection.js';
-
-const copyShortNews = main => {
-  const shortSection = createNewSection(null, null);
-  const cardsElems = document.querySelectorAll('.articles__card');
-  const cards = Array.from(cardsElems);
-  const cardsShort = cards.slice(0, 4);
-  shortSection.list.append(...cardsShort);
-  return shortSection;
-};
 
 const renderSearch = async (searchValue, main, key) => {
   const {lang, country} = getRegionStorage();
-
-  let shortNews;
+  main.innerHTML = '';
+  preload.show(main);
 
   if (searchValue) {
-    shortNews = copyShortNews();
-    main.innerHTML = '';
-    preload.show(main);
-
-    await renderNews(searchValue, key, lang, country, 8, main)
-        .then(() => {
-          main.append(shortNews);
+    Promise.all([
+      fetchRequest(searchValue, key, lang, country, 8, renderNews),
+      fetchRequest(false, key, lang, country, 4, renderNews),
+    ])
+        .then(elements => {
           preload.remove();
+          main.append(elements[0], elements[1]);
         });
   } else {
-    main.innerHTML = '';
-    preload.show(main);
-    await renderNews(false, key, lang, country, 8, main);
+    const news = await fetchRequest(false, key, lang, country, 8, renderNews);
     preload.remove();
+    main.append(news);
   }
 };
 
